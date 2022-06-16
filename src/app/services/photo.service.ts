@@ -41,15 +41,33 @@ export class PhotoService {
           data: base64Data,
           directory: Directory.Data
         })
+
+        return {
+          filepath: filename,
+          webviewPath:cameraPhoto.webPath
+        }        
         //https://www.youtube.com/watch?v=jGEAqQbHNic&t=1050s&ab_channel=IngenieriadeSoftware-UTA VOY EN EL MINUTO 1:14:55hrs
 
       }
       public async readAsBase64(cameraPhoto: CameraPhoto){
         const response = await fetch (cameraPhoto.webPath!)
         const blob = await response.blob()
+
+        return await this.convertBlobToBase64(blob) as string
+
       }
+      convertBlobToBase64 = (blob: Blob) => new Promise ((resolve, reject) => {
+        const reader = new FileReader
+        reader.onerror = reject
+        reader.obload = () => {
+          resolve(reader.result)
+        }
+      
+      })
+
 
     }
+    
 
 
 
