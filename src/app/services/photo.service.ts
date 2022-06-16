@@ -5,6 +5,7 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Storage } from '@capacitor/storage';
 import { Platform } from '@ionic/angular';
 import { Foto } from '../models/foto.interface';
+import { Geolocation } from '@capacitor/geolocation';
 
 
 @Injectable({
@@ -24,7 +25,12 @@ export class PhotoService {
         source: CameraSource.Camera,
         quality: 100
       })
-
+      try{
+        const cordenadas = await Geolocation.getCurrentPosition();
+        console.log(`Current position:`, cordenadas);
+      }catch(e){
+        console.log(e);
+      }
       /*this.fotos.unshift({
         filepath: "foto_",
         webviewPath: fotoCapturada.webPath
