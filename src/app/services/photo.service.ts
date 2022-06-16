@@ -13,6 +13,8 @@ import { Foto } from '../models/foto.interface';
 export class PhotoService {
   //En este arreglo se almacenan las fotos
   public fotos: Foto[];
+  private PHOTO_STORAGE: string = "fotos"
+
   constructor(){ }
     
     public async addNewToGallery(){
@@ -30,6 +32,11 @@ export class PhotoService {
 
       const savedImageFile = await this.savePicture(fotoCapturada);
       this.fotos.unshift(savedImageFile);
+
+      Storage.set({
+        key: this.PHOTO_STORAGE,
+        value: JSON.stringify(this.fotos)
+      })
       
     }
       public async savePicture(cameraPhoto: CameraPhoto){
@@ -62,8 +69,32 @@ export class PhotoService {
         reader.onload = () => {
           resolve(reader.result)
         }
-      
+        //sin eso al principio
+        reader.readAsDataURL(blob)
       })
+
+      public async loadSave()
+      {
+        //recuperar las fotos de la caché
+        const listaFotos = await Storage.get ({ key: this.PHOTO_STORAGE } )
+        this.fotos = JSON.parse(listaFotos.value) || []
+        
+        //Desplegar las fotos leidas en formato base64
+
+        for(let foto of this.fotos )
+        {
+          //Leer cada foto almacenada en el sistema de archivo
+          const readFile = await Filesystem.readFile({
+            path: foto.filepath,
+            directory: Directory.Data
+          })
+
+          //solo para plataforma web: Carga las fotos en base 64
+          //no es necesario 
+
+          foto.webviewPath = `data:image/jpeg;base64,${readFile.data}`
+        }
+      }
 
 
     }
