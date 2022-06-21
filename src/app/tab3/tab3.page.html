@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-center">
-      Geolocalización
+      Ubicación Actual
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Geo</ion-title>
+      <ion-title size="large">Tab 3</ion-title>
+     
+
     </ion-toolbar>
   </ion-header>
+
+  <button ion-button icon-right (click)="getCurrentLocation()" align="center"><ion-icon name="home"></ion-icon>Obtener geo</button>
 </ion-content>
