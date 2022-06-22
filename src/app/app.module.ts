@@ -1,3 +1,4 @@
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
 import { NativeGeocoder } from '@awesome-cordova-plugins/native-geocoder/ngx';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +17,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   providers: [{ 
     provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy },
+    LocationAccuracy,
     NativeGeocoder
   ],
 

@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  
   {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },  {
     path: 'lugares',
     loadChildren: () => import('./lugares/lugares/lugares.module').then( m => m.LugaresPageModule)
   },
@@ -14,10 +16,6 @@ const routes: Routes = [
   {
     path: 'postclarifai',
     loadChildren: () => import('./clarifai/postclarifai/postclarifai.module').then( m => m.PostclarifaiPageModule)
-  },
-  {
-    path: 'tab2',
-    loadChildren: () => import('./tab2/tab2.module').then( m => m.Tab2PageModule)
   }
 
 ];
