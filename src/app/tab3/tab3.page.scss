@@ -1,3 +1,9 @@
 ion-content ion-toolbar {
-  --background: translucent;
+  --background: #41AEE8 ;
+}
+.flex-center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100%;
 }

@@ -27,7 +27,8 @@ export class PhotoService {
       })
       try{
         const cordenadas = await Geolocation.getCurrentPosition();
-        console.log(`Current position:`, cordenadas);
+        let corde = cordenadas.coords.latitude;
+        console.log(`Current position: ` + corde);
       }catch(e){
         console.log(e);
       }

@@ -1,18 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="ion-text-center">
-      Ubicación Actual
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content padding>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-     
-
-    </ion-toolbar>
-  </ion-header>
-  <button ion-button icon-right (click)="getCurrentLocation()" align="center"><ion-icon name="home"></ion-icon>Obtener geo</button>
+  <div class="flex-center">
+    <ion-button ion-button  expand="block" (click)="getCurrentLocation()" [routerLink]="['../tab1']" ><ion-icon name="home"></ion-icon>Obtener geo</ion-button>
+  </div>  
 </ion-content>

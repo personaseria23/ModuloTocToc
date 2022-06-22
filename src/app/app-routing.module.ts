@@ -5,7 +5,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },  {
+  },
+  {
     path: 'lugares',
     loadChildren: () => import('./lugares/lugares/lugares.module').then( m => m.LugaresPageModule)
   },
@@ -17,7 +18,6 @@ const routes: Routes = [
     path: 'postclarifai',
     loadChildren: () => import('./clarifai/postclarifai/postclarifai.module').then( m => m.PostclarifaiPageModule)
   }
-
 ];
 @NgModule({
   imports: [
