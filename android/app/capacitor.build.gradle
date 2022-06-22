@@ -14,7 +14,7 @@ dependencies {
     implementation project(':capacitor-geolocation')
     implementation project(':capacitor-splash-screen')
     implementation project(':capacitor-storage')
-
+    implementation "com.google.android.gms:play-services-location:16.+"
 }
 
 

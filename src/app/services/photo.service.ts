@@ -6,7 +6,7 @@ import { Storage } from '@capacitor/storage';
 import { Platform } from '@ionic/angular';
 import { Foto } from '../models/foto.interface';
 import { Geolocation } from '@capacitor/geolocation';
-
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +15,10 @@ export class PhotoService {
   //En este arreglo se almacenan las fotos
   public fotos: Foto[];
   private PHOTO_STORAGE: string = "fotos"
+  
 
   constructor(){ }
-    
+      
     public async addNewToGallery(){
       //proceso_para_tomar_foto
       const fotoCapturada = await Camera.getPhoto({
@@ -26,9 +27,10 @@ export class PhotoService {
         quality: 100
       })
       try{
+        
         const cordenadas = await Geolocation.getCurrentPosition();
         let corde = cordenadas.coords.latitude;
-        console.log(`Current position: ` + corde);
+        console.log(`Current position: `);
       }catch(e){
         console.log(e);
       }
@@ -36,7 +38,11 @@ export class PhotoService {
         filepath: "foto_",
         webviewPath: fotoCapturada.webPath
       })*/
-
+      
+      let options: NativeGeocoderOptions = {
+        useLocale: true,
+        maxResults: 5
+      };
       const savedImageFile = await this.savePicture(fotoCapturada);
       this.fotos.unshift(savedImageFile);
 
@@ -79,7 +85,7 @@ export class PhotoService {
         //sin eso al principio
         reader.readAsDataURL(blob)
       })
-
+     
       public async loadSave()
       {
         //recuperar las fotos de la caché
