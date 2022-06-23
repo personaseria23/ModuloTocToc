@@ -29,7 +29,6 @@ export class Tab2Page implements OnInit {
       const address = await this.global.reverseGeocoder(coordinates.coords.latitude, coordinates.coords.longitude);
       console.log('address: ', address);
       this.loc = 
-        (address?.areasOfInterest[0] ? address?.areasOfInterest[0] + ', ' : '') + 
         (address?.subLocality ? address?.subLocality + ', ' : '') + 
         (' - ' + address?.postalCode + ', ') + 
         (address?.locality + ', ') + 
