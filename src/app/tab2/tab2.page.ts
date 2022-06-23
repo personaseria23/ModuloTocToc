@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from './../services/global/global.service';
+import { Browser } from '@capacitor/browser';
+
 
 @Component({
   selector: 'app-tab2',
@@ -11,6 +13,10 @@ export class Tab2Page implements OnInit {
   constructor(
     private global: GlobalService
   ) { }
+
+
+  ciudad="";
+  region="";
 
   ngOnInit() {
     this.getCurrentLocation();
@@ -29,11 +35,9 @@ export class Tab2Page implements OnInit {
       const address = await this.global.reverseGeocoder(coordinates.coords.latitude, coordinates.coords.longitude);
       console.log('address: ', address);
       this.loc = 
-        (address?.areasOfInterest[0] ? address?.areasOfInterest[0] + ', ' : '') + 
-        (address?.subLocality ? address?.subLocality + ', ' : '') + 
-        (' - ' + address?.postalCode + ', ') + 
-        (address?.locality + ', ') + 
+        
         (address?.administrativeArea ? address?.administrativeArea + ', ' : '') + 
+        (address?.locality + ', ') + 
         (address?.countryName);
         
       const coords = await this.global.forwardGeocoder(this.loc);
@@ -58,4 +62,45 @@ export class Tab2Page implements OnInit {
       console.log(e);
     }
   }
+  async openBrowser(){
+
+    const coordinates = await this.global.getCurrentLocation();
+    const address = await this.global.reverseGeocoder(coordinates.coords.latitude, coordinates.coords.longitude);
+    //
+    const coords = await this.global.forwardGeocoder(this.loc);
+
+
+    this.ciudad=address.locality
+    this.region=address.administrativeArea
+
+    this.ciudad= this.ciudad.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    this.region=this.region.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    //normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+    /*
+    if (address.locality=="Valparaíso"){
+      this.ciudad="valparaiso"
+    }
+    if (address.administrativeArea=="Valparaíso"){
+      this.region="valparaiso"
+    }
+    if (address.administrativeArea=="Villa Alemana"){
+      this.ciudad="villa alemana"
+    }
+    if (address.administrativeArea=="Valparaíso"){
+      this.ciudad="valparaiso"
+    }
+    if (address.administrativeArea=="Valparaíso"){
+      this.ciudad="valparaiso"
+    }
+    if (address.administrativeArea=="Valparaíso"){
+      this.ciudad="valparaiso"
+    }
+    */
+    
+
+
+    await Browser.open({ url: 'https://www.toctoc.com/arriendo/departamento/'+this.region+'/'+this.ciudad+'?o=link_menu'})
+  }
+
 }
