@@ -101,6 +101,8 @@ export class Tab2Page implements OnInit {
 
 
     await Browser.open({ url: 'https://www.toctoc.com/arriendo/departamento/'+this.region+'/'+this.ciudad+'?o=link_menu'})
+    //hola
+    
   }
 
 }
