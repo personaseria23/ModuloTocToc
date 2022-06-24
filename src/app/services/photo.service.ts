@@ -51,7 +51,7 @@ export class PhotoService {
       const savedImageFile = await this.savePicture(fotoCapturada);
       this.router.navigateByUrl("../tab2");
 
-
+0
 
 
       Storage.set({
@@ -71,6 +71,8 @@ export class PhotoService {
         })
         this.presentLoading();
         this.router.navigateByUrl("../tab2");
+        this.router.navigateByUrl("tabs/tab2");
+
         //https://www.youtube.com/watch?v=jGEAqQbHNic&t=1050s&ab_channel=IngenieriadeSoftware-UTA VOY EN EL MINUTO 1:14:55hrs
 
       }
