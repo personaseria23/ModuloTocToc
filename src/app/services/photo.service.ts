@@ -1,3 +1,4 @@
+import { TabsPage } from './../tabs/tabs.page';
 import { Injectable } from '@angular/core';
 import { CameraPhoto, Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
@@ -6,7 +7,11 @@ import { Storage } from '@capacitor/storage';
 import { Platform } from '@ionic/angular';
 import { Foto } from '../models/foto.interface';
 import { Geolocation } from '@capacitor/geolocation';
+import { LoadingController } from '@ionic/angular';
+
+
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +22,7 @@ export class PhotoService {
   private PHOTO_STORAGE: string = "fotos"
   
 
-  constructor(){ }
+  constructor(public loadingController: LoadingController, public router: Router){ }
       
     public async addNewToGallery(){
       //proceso_para_tomar_foto
@@ -46,6 +51,9 @@ export class PhotoService {
       const savedImageFile = await this.savePicture(fotoCapturada);
       this.fotos.unshift(savedImageFile);
 
+
+
+
       Storage.set({
         key: this.PHOTO_STORAGE,
         value: JSON.stringify(this.fotos)
@@ -61,7 +69,8 @@ export class PhotoService {
           data: base64Data,
           directory: Directory.Data
         })
-
+        this.presentLoading();
+        this.router.navigateByUrl("../tab2");
         return {
           filepath: filename,
           webviewPath:cameraPhoto.webPath
@@ -107,6 +116,17 @@ export class PhotoService {
 
           foto.webviewPath = `data:image/jpeg;base64,${readFile.data}`
         }
+      }
+      async presentLoading() {
+        const loading = await this.loadingController.create({
+          message: 'Cargando archivos y comparando...',
+          duration: 5000
+        });
+        await loading.present();
+    
+        const { role, data } = await loading.onDidDismiss();
+    
+        console.log('Loading dismissed!');
       }
 
 

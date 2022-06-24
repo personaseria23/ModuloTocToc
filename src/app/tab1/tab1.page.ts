@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PhotoService } from '../services/photo.service';
+import { LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
