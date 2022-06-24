@@ -49,7 +49,7 @@ export class PhotoService {
         maxResults: 5
       };
       const savedImageFile = await this.savePicture(fotoCapturada);
-      this.fotos.unshift(savedImageFile);
+      this.router.navigateByUrl("../tab2");
 
 
 
@@ -71,10 +71,6 @@ export class PhotoService {
         })
         this.presentLoading();
         this.router.navigateByUrl("../tab2");
-        return {
-          filepath: filename,
-          webviewPath:cameraPhoto.webPath
-        }        
         //https://www.youtube.com/watch?v=jGEAqQbHNic&t=1050s&ab_channel=IngenieriadeSoftware-UTA VOY EN EL MINUTO 1:14:55hrs
 
       }
