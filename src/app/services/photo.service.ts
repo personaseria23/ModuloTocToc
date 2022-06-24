@@ -49,7 +49,8 @@ export class PhotoService {
         maxResults: 5
       };
       const savedImageFile = await this.savePicture(fotoCapturada);
-      this.router.navigateByUrl("../tab2");
+      this.router.navigateByUrl("tabs/tab2");
+
 
 0
 
@@ -70,9 +71,6 @@ export class PhotoService {
           directory: Directory.Data
         })
         this.presentLoading();
-        this.router.navigateByUrl("../tab2");
-        this.router.navigateByUrl("tabs/tab2");
-
         //https://www.youtube.com/watch?v=jGEAqQbHNic&t=1050s&ab_channel=IngenieriadeSoftware-UTA VOY EN EL MINUTO 1:14:55hrs
 
       }
