@@ -50,10 +50,6 @@ export class PhotoService {
       };
       const savedImageFile = await this.savePicture(fotoCapturada);
 
-      setTimeout(function(){
-        this.router.navigateByUrl("tabs/tab2");  
-      },5000);
-
       Storage.set({
         key: this.PHOTO_STORAGE,
         value: JSON.stringify(this.fotos)
@@ -69,7 +65,9 @@ export class PhotoService {
           data: base64Data,
           directory: Directory.Data
         })
+
         this.presentLoading();
+        this.router.navigateByUrl("tabs/tab2");  
         
         //https://www.youtube.com/watch?v=jGEAqQbHNic&t=1050s&ab_channel=IngenieriadeSoftware-UTA VOY EN EL MINUTO 1:14:55hrs
 
