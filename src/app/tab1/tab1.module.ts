@@ -6,8 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 
+
+
 @NgModule({
   imports: [
+    
     IonicModule,
     CommonModule,
     FormsModule,
