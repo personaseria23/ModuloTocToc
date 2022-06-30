@@ -49,7 +49,7 @@ export class PhotoService {
         maxResults: 5
       };
       const savedImageFile = await this.savePicture(fotoCapturada);
-      this.router.navigateByUrl("tabs/tab2");
+      //this.router.navigateByUrl("tabs/tab2");
 
       Storage.set({
         key: this.PHOTO_STORAGE,
