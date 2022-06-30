@@ -67,9 +67,7 @@ export class PhotoService {
           directory: Directory.Data
         })
         this.presentLoading();
-        setTimeout(function(){
-          this.router.navigateByUrl("tabs/tab2")
-        },5000);
+        setTimeout(this.cambiarDeTab,5000);
 
         //https://www.youtube.com/watch?v=jGEAqQbHNic&t=1050s&ab_channel=IngenieriadeSoftware-UTA VOY EN EL MINUTO 1:14:55hrs
 
@@ -125,6 +123,9 @@ export class PhotoService {
         console.log('Loading dismissed!');
       }
 
+      public cambiarDeTab (){
+        this.router.navigateByUrl("tabs/tab2")
+      }
 
     }
     
